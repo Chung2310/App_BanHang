@@ -1,37 +1,35 @@
 package com.example.quanlybanhang.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.Network;
 import android.net.NetworkCapabilities;
-import android.net.NetworkInfo;
-import android.net.NetworkRequest;
-import android.net.http.HttpException;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.ext.SdkExtensions;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.quanlybanhang.R;
 import com.example.quanlybanhang.adapter.LoaiSanPhamAdapter;
+import com.example.quanlybanhang.adapter.SanPhamMoiAdapter;
 import com.example.quanlybanhang.model.Loaisp;
+import com.example.quanlybanhang.model.SanPhamMoi;
+import com.example.quanlybanhang.model.SanPhamMoiModel;
 import com.example.quanlybanhang.retrofit.ApiBanHang;
-import com.example.quanlybanhang.model.LoaiSpModel;
 import com.example.quanlybanhang.retrofit.RetrofitClient;
 import com.example.quanlybanhang.utils.Utils;
 import com.google.android.material.navigation.NavigationView;
@@ -57,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
     List<Loaisp> mangloaisp;
     CompositeDisposable compositeDisposable = new CompositeDisposable();
     ApiBanHang apiBanHang;
+    List<SanPhamMoi> mangSpmoi;
+    SanPhamMoiAdapter spAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,13 +68,55 @@ public class MainActivity extends AppCompatActivity {
         ActionBar();
 
         if(isConnected(this)){
-
+            getSpmoi();
             ActionViewFlipper();
             getLoaiSanPham();
+            getEvenClick();
         }
         else{
             Toast.makeText(getApplicationContext(),"Không có Internet, vui lòng kết nối", Toast.LENGTH_LONG).show();
         }
+    }
+
+    private void getEvenClick() {
+        listViewMHC.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                switch (i){
+                    case 0:
+                        Intent trangchu = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(trangchu);
+                        break;
+                    case 1:
+                        Intent laptop = new Intent(getApplicationContext(), LaptopActivity.class);
+
+                        startActivity(laptop);
+                        break;
+                    case 2:
+                        Intent dienthoai = new Intent(getApplicationContext(), DienThoaiActivity.class);
+                        dienthoai.putExtra("loai",1);
+                        startActivity(dienthoai);
+                        break;
+                }
+            }
+        });
+    }
+
+    private void getSpmoi() {
+        compositeDisposable.add(apiBanHang.getSpMoi()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                SanPhamMoiModel -> {
+                    if(SanPhamMoiModel.isSuccess()){
+                        mangSpmoi = SanPhamMoiModel.getResult();
+                        spAdapter = new SanPhamMoiAdapter(getApplicationContext(),mangSpmoi);
+                        recyclerViewMHC.setAdapter(spAdapter);
+                    }
+                },throwable -> {
+                    Toast.makeText(getApplicationContext(),"Khong ket noi duoc voi sever"+throwable.getMessage(),Toast.LENGTH_LONG).show();
+                }
+        ));
     }
 
     private void getLoaiSanPham() {
@@ -132,10 +174,14 @@ public class MainActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbarMHC);
         viewFlipper = findViewById(R.id.viewflipperMHC);
         recyclerViewMHC = findViewById(R.id.recycleViewMHC);
+        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this,2);
+        recyclerViewMHC.setLayoutManager(layoutManager);
+        recyclerViewMHC.setHasFixedSize(true);
         navigationView = findViewById(R.id.navigationviewMHC);
         listViewMHC = findViewById(R.id.listviewMHC);
         drawerLayout = findViewById(R.id.drawerlayout);
         mangloaisp = new ArrayList<>();
+        mangSpmoi = new ArrayList<>();
 
     }
     private boolean isConnected(Context context) {

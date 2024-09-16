@@ -7,8 +7,8 @@
         android:layout_marginLeft="10dp"
         android:id="@+id/item_image"
         android:src="@drawable/image_24"
-        android:layout_width="35dp"
-        android:layout_height="35dp"/>
+        android:layout_width="60dp"
+        android:layout_height="60dp"/>
     <TextView
         android:textColor="@android:color/holo_red_light"
         android:id="@+id/item_text"

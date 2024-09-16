@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView
+    android:layout_marginTop="10dp"
     android:elevation="8dp"
     app:cardCornerRadius="4dp"
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -12,6 +13,7 @@
         <ImageView
             android:src="@drawable/iconnew"
             android:layout_gravity="top|right"
+            android:elevation="10dp"
             android:layout_width="30dp"
             android:layout_height="30dp"/>
         <LinearLayout
