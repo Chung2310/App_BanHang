@@ -88,8 +88,8 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(trangchu);
                         break;
                     case 1:
-                        Intent laptop = new Intent(getApplicationContext(), LaptopActivity.class);
-
+                        Intent laptop = new Intent(getApplicationContext(), DienThoaiActivity.class);
+                        laptop.putExtra("loai",2);
                         startActivity(laptop);
                         break;
                     case 2:
@@ -182,7 +182,9 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout = findViewById(R.id.drawerlayout);
         mangloaisp = new ArrayList<>();
         mangSpmoi = new ArrayList<>();
-
+        if(Utils.manggiohang == null){
+            Utils.manggiohang = new ArrayList<>();
+        }
     }
     private boolean isConnected(Context context) {
         ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);

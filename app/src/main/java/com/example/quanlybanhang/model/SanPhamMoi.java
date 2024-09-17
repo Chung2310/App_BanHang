@@ -1,6 +1,8 @@
 package com.example.quanlybanhang.model;
 
-public class SanPhamMoi {
+import java.io.Serializable;
+
+public class SanPhamMoi implements Serializable {
     int id;
     String tensp;
     String hinhanh;
@@ -8,7 +10,7 @@ public class SanPhamMoi {
     String mota;
     int loai;
 
-    public int getId() {
+    public int getId()  {
         return id;
     }
 
