@@ -18,6 +18,7 @@ import com.example.quanlybanhang.R;
 import com.example.quanlybanhang.activity.ChiTietActivity;
 import com.example.quanlybanhang.model.SanPhamMoi;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class SanPhamMoiAdapter extends RecyclerView.Adapter<SanPhamMoiAdapter.MyViewHolder> {
@@ -41,7 +42,8 @@ public class SanPhamMoiAdapter extends RecyclerView.Adapter<SanPhamMoiAdapter.My
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         SanPhamMoi sanPhamMoi = array.get(position);
         holder.txtten.setText(sanPhamMoi.getTensp());
-        holder.txtgia.setText(sanPhamMoi.getGiasp());
+        DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
+        holder.txtgia.setText(decimalFormat.format(Long.parseLong(sanPhamMoi.getGiasp()))+"Đ");
         Glide.with(context).load(sanPhamMoi.getHinhanh()).into(holder.imghinhanh);
         holder.setItemClickListener(new ItemClickListener() {
             @Override

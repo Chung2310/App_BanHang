@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -26,6 +27,7 @@ import com.bumptech.glide.Glide;
 import com.example.quanlybanhang.R;
 import com.example.quanlybanhang.adapter.LoaiSanPhamAdapter;
 import com.example.quanlybanhang.adapter.SanPhamMoiAdapter;
+import com.example.quanlybanhang.model.GioHang;
 import com.example.quanlybanhang.model.Loaisp;
 import com.example.quanlybanhang.model.SanPhamMoi;
 import com.example.quanlybanhang.model.SanPhamMoiModel;
@@ -33,6 +35,7 @@ import com.example.quanlybanhang.retrofit.ApiBanHang;
 import com.example.quanlybanhang.retrofit.RetrofitClient;
 import com.example.quanlybanhang.utils.Utils;
 import com.google.android.material.navigation.NavigationView;
+import com.nex3z.notificationbadge.NotificationBadge;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,6 +60,8 @@ public class MainActivity extends AppCompatActivity {
     ApiBanHang apiBanHang;
     List<SanPhamMoi> mangSpmoi;
     SanPhamMoiAdapter spAdapter;
+    NotificationBadge badge;
+    FrameLayout frameLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -182,9 +187,37 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout = findViewById(R.id.drawerlayout);
         mangloaisp = new ArrayList<>();
         mangSpmoi = new ArrayList<>();
+        badge = findViewById(R.id.menu_sl_main);
+        frameLayout = findViewById(R.id.framegiohangmain);
         if(Utils.manggiohang == null){
             Utils.manggiohang = new ArrayList<>();
         }
+        else {
+            badge.setText(String.valueOf(tinhTongSoLuongSanPham()));
+
+        }
+
+        frameLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),GioHangActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        badge.setText(String.valueOf(tinhTongSoLuongSanPham()));
+    }
+
+    private int tinhTongSoLuongSanPham() {
+        int total = 0;
+        for (GioHang gioHang : Utils.manggiohang) {
+            total += gioHang.getSoluong();
+        }
+        return total;
     }
     private boolean isConnected(Context context) {
         ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);

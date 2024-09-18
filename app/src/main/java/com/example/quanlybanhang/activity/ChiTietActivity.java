@@ -1,9 +1,11 @@
 package com.example.quanlybanhang.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -82,8 +84,17 @@ public class ChiTietActivity extends AppCompatActivity {
             gioHang.setHinhsp(sanPhamMoi.getHinhanh());
             Utils.manggiohang.add(gioHang);
         }
-        badge.setText(String.valueOf(Utils.manggiohang.size()));
+        badge.setText(String.valueOf(tinhTongSoLuongSanPham()));
     }
+
+    private int tinhTongSoLuongSanPham() {
+        int total = 0;
+        for (GioHang gioHang : Utils.manggiohang) {
+            total += gioHang.getSoluong();
+        }
+        return total;
+    }
+
 
     private void initData() {
         sanPhamMoi = (SanPhamMoi) getIntent().getSerializableExtra("chitiet");
@@ -118,9 +129,18 @@ public class ChiTietActivity extends AppCompatActivity {
         spinner = findViewById(R.id.spinner);
         toolbar = findViewById(R.id.toolBarCT);
         badge = findViewById(R.id.menu_sl);
+        FrameLayout frameLayout = findViewById(R.id.framegiohang);
+        frameLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),GioHangActivity.class);
+                startActivity(intent);
+            }
+        });
         if(Utils.manggiohang !=null){
-            badge.setText(String.valueOf(Utils.manggiohang.size()));
+            badge.setText(String.valueOf(tinhTongSoLuongSanPham()));
         }
+
     }
 
 }
