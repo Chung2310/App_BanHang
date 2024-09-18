@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolBarDT"
-        app:title="Điện thoại"
+        app:title="Sản Phẩm"
         android:background="#AFC5CF"
         app:layout_constraintTop_toTopOf="parent"
 

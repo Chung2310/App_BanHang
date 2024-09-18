@@ -63,7 +63,7 @@ public class ChiTietActivity extends AppCompatActivity {
                     flag = true;
                 }
             }
-            if(flag == true){
+            if(flag == false){
                 long gia = Long.parseLong(sanPhamMoi.getGiasp()) * soluong;
                 GioHang gioHang = new GioHang();
                 gioHang.setGiasp(gia);
