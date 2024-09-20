@@ -143,4 +143,9 @@ public class ChiTietActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onResume() {
+        badge.setText(String.valueOf(tinhTongSoLuongSanPham()));
+        super.onResume();
+    }
 }

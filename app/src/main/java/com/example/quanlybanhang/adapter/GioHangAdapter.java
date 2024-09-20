@@ -1,6 +1,8 @@
 package com.example.quanlybanhang.adapter;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +17,7 @@ import com.example.quanlybanhang.Interface.ImageClickListenner;
 import com.example.quanlybanhang.R;
 import com.example.quanlybanhang.model.EventBus.TinhTongEvent;
 import com.example.quanlybanhang.model.GioHang;
+import com.example.quanlybanhang.utils.Utils;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -42,11 +45,13 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.MyViewHo
         GioHang gioHang = gioHangList.get(position);
         holder.item_giohang_tensp.setText(gioHang.getTensp());
         holder.item_giohang_soluong.setText(String.valueOf(gioHang.getSoluong()));
+
         Glide.with(context).load(gioHang.getHinhsp()).into(holder.item_giohang_image);
         DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
-        holder.item_giohang_gia.setText("Giá: " + decimalFormat.format(gioHang.getGiasp()) + "Đ");
+        holder.item_giohang_gia.setText("Giá: " + decimalFormat.format((gioHang.getGiasp())) + "Đ");
         long gia = gioHang.getSoluong() * gioHang.getGiasp();
         holder.item_giohang_tong.setText(decimalFormat.format(gia) + "Đ");
+
         holder.setListenner(new ImageClickListenner() {
             @Override
             public void onImageClick(View view, int pos, int giatri) {
@@ -54,6 +59,34 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.MyViewHo
                     if (gioHangList.get(pos).getSoluong() > 1) {
                         int soluongmoi = gioHangList.get(pos).getSoluong() - 1;
                         gioHangList.get(pos).setSoluong(soluongmoi);
+
+                        holder.item_giohang_soluong.setText(gioHangList.get(pos).getSoluong() + " ");
+                        long gia = gioHangList.get(pos).getSoluong() * gioHangList.get(pos).getGiasp();
+                        holder.item_giohang_tong.setText(decimalFormat.format(gia) + "Đ");
+                        EventBus.getDefault().postSticky(new TinhTongEvent());
+                    }
+                    else if(gioHangList.get(pos).getSoluong() == 1){
+                        AlertDialog.Builder builder = new AlertDialog.Builder(view.getRootView().getContext());
+                        builder.setTitle("Thông báo");
+                        builder.setMessage("Bạn có muốn xóa sản phẩm này khỏi giỏ hàng ?");
+                        builder.setPositiveButton("Đồng ý", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                Utils.manggiohang.remove(pos);
+                                notifyDataSetChanged();
+                                EventBus.getDefault().postSticky(new TinhTongEvent());
+                            }
+                        });
+                        builder.setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.dismiss();
+                            }
+                        });
+                        builder.show();
+
+
+
                     }
                 } else if (giatri == 2) {
                     if (gioHangList.get(pos).getSoluong() < 11) {
@@ -62,10 +95,6 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.MyViewHo
                     }
                 }
 
-                holder.item_giohang_soluong.setText(gioHangList.get(pos).getSoluong() + " ");
-                long gia = gioHangList.get(pos).getSoluong() * gioHangList.get(pos).getGiasp();
-                holder.item_giohang_tong.setText(decimalFormat.format(gia) + "Đ");
-                EventBus.getDefault().postSticky(new TinhTongEvent());
             }
         });
     }

@@ -2,6 +2,7 @@ package com.example.quanlybanhang.retrofit;
 
 import com.example.quanlybanhang.model.LoaiSpModel;
 import com.example.quanlybanhang.model.SanPhamMoiModel;
+import com.example.quanlybanhang.model.UserModel;
 
 import io.reactivex.rxjava3.core.Observable;
 import retrofit2.http.GET;
@@ -18,5 +19,18 @@ public interface ApiBanHang {
     Observable<SanPhamMoiModel> getSanPham(
             @Query("page") int page,
             @Query("loai") int loai
+    );
+
+    @GET("dangki.php")
+    Observable<UserModel> dangKi(
+            @Query("email") String email,
+            @Query("pass") String pass,
+            @Query("name") String name,
+            @Query("sdt") String sdt
+    );
+    @GET("dangnhap.php")
+    Observable<UserModel> dangNhap(
+            @Query("email") String email,
+            @Query("pass") String pass
     );
 }
