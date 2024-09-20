@@ -78,7 +78,7 @@ public class DangNhapActivity extends AppCompatActivity {
                                         }
                                     },  throwable -> {
                                         Toast.makeText(getApplicationContext(),throwable.getMessage(),Toast.LENGTH_LONG).show();
-                                        txtloi.setText(throwable.getMessage());
+
                                     }
                             ));
                 }
