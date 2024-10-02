@@ -102,6 +102,11 @@ public class MainActivity extends AppCompatActivity {
                         dienthoai.putExtra("loai",1);
                         startActivity(dienthoai);
                         break;
+                    case 5:
+                        Intent itemother = new Intent(getApplicationContext(), DienThoaiActivity.class);
+                        itemother.putExtra("loai",3);
+                        startActivity(itemother);
+                        break;
                 }
             }
         });

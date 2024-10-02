@@ -23,13 +23,15 @@ import com.example.quanlybanhang.retrofit.RetrofitClient;
 import com.example.quanlybanhang.utils.Utils;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.gson.Gson;
 
+import io.paperdb.Paper;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class DangNhapActivity extends AppCompatActivity {
-    TextView txtdangki;
+    TextView txtdangki,txtResetPass;
     TextInputEditText txtemail,txtpassword;
     AppCompatButton btnDangNhap;
     ApiBanHang apiBanHang;
@@ -52,6 +54,13 @@ public class DangNhapActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        txtResetPass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),ResetPassActivity.class);
+                startActivity(intent);
+            }
+        });
         btnDangNhap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -62,6 +71,10 @@ public class DangNhapActivity extends AppCompatActivity {
                 } else if(TextUtils.isEmpty(str_pass)) {
                     Toast.makeText(getApplicationContext(),"Hãy nhập mật khẩu của bạn",Toast.LENGTH_LONG).show();
                 } else {
+
+                    Paper.book().write("email",str_email);
+                    Paper.book().write("pass",str_pass);
+
                     compositeDisposable.add(apiBanHang.dangNhap(str_email,str_pass)
                             .subscribeOn(Schedulers.io())
                             .observeOn(AndroidSchedulers.mainThread())
@@ -76,9 +89,9 @@ public class DangNhapActivity extends AppCompatActivity {
                                         else {
                                             Toast.makeText(getApplicationContext(),userModel.getMessage(),Toast.LENGTH_LONG).show();
                                         }
+
                                     },  throwable -> {
                                         Toast.makeText(getApplicationContext(),throwable.getMessage(),Toast.LENGTH_LONG).show();
-
                                     }
                             ));
                 }
@@ -87,12 +100,18 @@ public class DangNhapActivity extends AppCompatActivity {
     }
 
     private void anhXa() {
+        Paper.init(this);
         apiBanHang = RetrofitClient.getInstance(Utils.BASE_URL).create(ApiBanHang.class);
         txtdangki =findViewById(R.id.txtdangki);
         txtemail = findViewById(R.id.txtemail);
         txtpassword = findViewById(R.id.password);
         btnDangNhap = findViewById(R.id.btnDangNhap);
+        txtResetPass = findViewById(R.id.resetPass);
 
+        if(Paper.book().read("email") != null && Paper.book().read("pass") != null){
+            txtemail.setText(Paper.book().read("email"));
+            txtpassword.setText(Paper.book().read("pass"));
+        }
     }
 
     @Override
@@ -102,6 +121,7 @@ public class DangNhapActivity extends AppCompatActivity {
             txtemail.setText(Utils.user_current.getEmail());
             txtpassword.setText(Utils.user_current.getPass());
         }
+
     }
 
     @Override
@@ -109,4 +129,4 @@ public class DangNhapActivity extends AppCompatActivity {
         compositeDisposable.clear();
         super.onDestroy();
     }
-}
+    }

@@ -33,4 +33,9 @@ public interface ApiBanHang {
             @Query("email") String email,
             @Query("pass") String pass
     );
+
+    @GET("reset.php")
+    Observable<UserModel> reset(
+            @Query("email") String email
+    );
 }

@@ -10,7 +10,8 @@
         android:id="@+id/toolBarCT"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="#84BF3F"
+        android:background="#FF9800"
+        app:titleTextColor="@color/white"
         app:title="Chi tiết sản phẩm"
         app:layout_constraintTop_toTopOf="parent">
         <FrameLayout

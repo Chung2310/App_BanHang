@@ -19,7 +19,8 @@
                 android:id="@+id/toolbarMHC"
                 android:layout_width="match_parent"
                 app:title="Trang Chính"
-                android:background="#ff00dfff"
+                app:titleTextColor="@color/white"
+                android:background="#FF9800"
                 android:layout_height="?attr/actionBarSize">
                 <FrameLayout
                     android:id="@+id/framegiohangmain"

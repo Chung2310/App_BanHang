@@ -48,7 +48,8 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.MyViewHo
 
         Glide.with(context).load(gioHang.getHinhsp()).into(holder.item_giohang_image);
         DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
-        holder.item_giohang_gia.setText("Giá: " + decimalFormat.format((gioHang.getGiasp())) + "Đ");
+        holder.item_giohang_gia.setText( decimalFormat.format((gioHang.getGiasp())) + "Đ");
+
         long gia = gioHang.getSoluong() * gioHang.getGiasp();
         holder.item_giohang_tong.setText(decimalFormat.format(gia) + "Đ");
 

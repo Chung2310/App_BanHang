@@ -5,13 +5,14 @@ import java.util.List;
 public class UserModel {
     boolean success;
     String message;
-    List<User> result;
+    User result;
 
-    public List<User> getResult() {
+
+    public User getResult() {
         return result;
     }
 
-    public void setResult(List<User> result) {
+    public void setResult(User result) {
         this.result = result;
     }
 

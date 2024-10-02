@@ -34,7 +34,6 @@ public class ChiTietActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_chi_tiet);
         anhXa();
         actionToolBar();
@@ -52,40 +51,34 @@ public class ChiTietActivity extends AppCompatActivity {
     }
 
     private void themGioHang() {
-        if(Utils.manggiohang.size() >0){
-            boolean flag = false;
-            int soluong = Integer.parseInt(spinner.getSelectedItem().toString());
-            for(int i = 0; i < Utils.manggiohang.size(); i++ ){
-                if(Utils.manggiohang.get(i).getIdsp() == sanPhamMoi.getId()){
+        int soluong = Integer.parseInt(spinner.getSelectedItem().toString());
+        long donGia = Long.parseLong(sanPhamMoi.getGiasp()); // Lưu đơn giá ban đầu
+        boolean flag = false;
+
+        if (Utils.manggiohang.size() > 0) {
+            for (int i = 0; i < Utils.manggiohang.size(); i++) {
+                if (Utils.manggiohang.get(i).getIdsp() == sanPhamMoi.getId()) {
                     Utils.manggiohang.get(i).setSoluong(soluong + Utils.manggiohang.get(i).getSoluong());
-                    long gia = Long.parseLong(sanPhamMoi.getGiasp()) * Utils.manggiohang.get(i).getSoluong();
-                    Utils.manggiohang.get(i).setGiasp(gia);
+                    Utils.manggiohang.get(i).setGiasp(donGia * Utils.manggiohang.get(i).getSoluong()); // Tổng giá bằng đơn giá nhân số lượng
                     flag = true;
+                    break;
                 }
             }
-            if(flag == false){
-                long gia = Long.parseLong(sanPhamMoi.getGiasp()) * soluong;
-                GioHang gioHang = new GioHang();
-                gioHang.setGiasp(gia);
-                gioHang.setSoluong(soluong);
-                gioHang.setIdsp(sanPhamMoi.getId());
-                gioHang.setTensp(sanPhamMoi.getTensp());
-                gioHang.setHinhsp(sanPhamMoi.getHinhanh());
-                Utils.manggiohang.add(gioHang);
-            }
-        }else{
-            int soluong = Integer.parseInt(spinner.getSelectedItem().toString());
-            long gia = Long.parseLong(sanPhamMoi.getGiasp()) * soluong;
+        }
+
+        if (!flag) {
             GioHang gioHang = new GioHang();
-            gioHang.setGiasp(gia);
+            gioHang.setGiasp(donGia );
             gioHang.setSoluong(soluong);
             gioHang.setIdsp(sanPhamMoi.getId());
             gioHang.setTensp(sanPhamMoi.getTensp());
             gioHang.setHinhsp(sanPhamMoi.getHinhanh());
             Utils.manggiohang.add(gioHang);
         }
+
         badge.setText(String.valueOf(tinhTongSoLuongSanPham()));
     }
+
 
     private int tinhTongSoLuongSanPham() {
         int total = 0;

@@ -6,9 +6,9 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolBarDT"
         app:title="Sản Phẩm"
-        android:background="#AFC5CF"
+        android:background="#FF9800"
         app:layout_constraintTop_toTopOf="parent"
-
+        app:titleTextColor="@color/white"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize">
 

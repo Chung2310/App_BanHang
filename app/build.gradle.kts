@@ -49,4 +49,9 @@ dependencies {
     implementation ("com.github.akarnokd:rxjava3-retrofit-adapter:3.0.0")
     implementation ("com.nex3z:notification-badge:1.0.4")
     implementation("org.greenrobot:eventbus:3.3.1")
+
+    implementation ("com.google.code.gson:gson:2.11.0")
+    implementation ("io.github.pilgr:paperdb:2.7.2")
+    implementation ("com.google.code.gson:gson:2.8.6")
+
 }
