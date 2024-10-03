@@ -38,4 +38,17 @@ public interface ApiBanHang {
     Observable<UserModel> reset(
             @Query("email") String email
     );
+
+    @GET("donhang.php")
+    Observable<UserModel> createOrder(
+            @Query("sdt") String sdt,
+            @Query("email") String email,
+            @Query("tongtien") String tongtien,
+            @Query("iduser") int iduser,
+            @Query("diachi") String diachi,
+            @Query("soluong") int soluong,
+            @Query("chitiet") String chitiet
+    );
+
+
 }
