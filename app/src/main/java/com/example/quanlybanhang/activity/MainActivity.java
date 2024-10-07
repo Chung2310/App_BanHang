@@ -107,6 +107,10 @@ public class MainActivity extends AppCompatActivity {
                         itemother.putExtra("loai",3);
                         startActivity(itemother);
                         break;
+                    case 6:
+                        Intent lichsu = new Intent(getApplicationContext(),XemDonActivity.class);
+                        startActivity(lichsu);
+                        break;
                 }
             }
         });

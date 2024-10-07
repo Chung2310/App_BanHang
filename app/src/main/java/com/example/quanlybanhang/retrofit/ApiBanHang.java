@@ -1,5 +1,6 @@
 package com.example.quanlybanhang.retrofit;
 
+import com.example.quanlybanhang.model.DonHangModel;
 import com.example.quanlybanhang.model.LoaiSpModel;
 import com.example.quanlybanhang.model.SanPhamMoiModel;
 import com.example.quanlybanhang.model.UserModel;
@@ -50,5 +51,8 @@ public interface ApiBanHang {
             @Query("chitiet") String chitiet
     );
 
-
+    @GET("xemdonhang.php")
+    Observable<DonHangModel> xemDonHang(
+            @Query("iduser") int iduser
+    );
 }
