@@ -55,4 +55,9 @@ public interface ApiBanHang {
     Observable<DonHangModel> xemDonHang(
             @Query("iduser") int iduser
     );
+
+    @GET("timkiem.php")
+    Observable<SanPhamMoiModel> search(
+            @Query("search") String search
+    );
 }

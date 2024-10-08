@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.Toolbar;
 
 import com.bumptech.glide.Glide;
@@ -25,7 +26,7 @@ import java.text.DecimalFormat;
 
 public class ChiTietActivity extends AppCompatActivity {
     TextView tensp,giasp,mota;
-    Button btnthem;
+    AppCompatButton btnthem;
     ImageView imghinhanh;
     Spinner spinner;
     Toolbar toolbar;
