@@ -53,5 +53,7 @@ dependencies {
     implementation ("com.google.code.gson:gson:2.11.0")
     implementation ("io.github.pilgr:paperdb:2.7.2")
     implementation ("com.google.code.gson:gson:2.8.6")
+    implementation ("com.airbnb.android:lottie:3.4.0")
+
 
 }

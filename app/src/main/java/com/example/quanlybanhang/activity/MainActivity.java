@@ -31,6 +31,7 @@ import com.example.quanlybanhang.model.GioHang;
 import com.example.quanlybanhang.model.Loaisp;
 import com.example.quanlybanhang.model.SanPhamMoi;
 import com.example.quanlybanhang.model.SanPhamMoiModel;
+import com.example.quanlybanhang.model.User;
 import com.example.quanlybanhang.retrofit.ApiBanHang;
 import com.example.quanlybanhang.retrofit.RetrofitClient;
 import com.example.quanlybanhang.utils.Utils;
@@ -40,6 +41,7 @@ import com.nex3z.notificationbadge.NotificationBadge;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.paperdb.Paper;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
@@ -69,7 +71,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         apiBanHang = RetrofitClient.getInstance(Utils.BASE_URL).create(ApiBanHang.class);
-
+        Paper.init(this);
+        if(Paper.book().read("user") != null){
+            User user = Paper.book().read("user");
+            Utils.user_current = user;
+        }
         anhXa();
         ActionBar();
 
@@ -111,6 +117,13 @@ public class MainActivity extends AppCompatActivity {
                     case 6:
                         Intent lichsu = new Intent(getApplicationContext(),XemDonActivity.class);
                         startActivity(lichsu);
+                        break;
+                    case 7:
+                        Paper.book().delete("user");
+                        Paper.book().delete("email");
+                        Paper.book().delete("pass");
+                        Intent dangxuat = new Intent(getApplicationContext(),DangNhapActivity.class);
+                        startActivity(dangxuat);
                         break;
                 }
             }

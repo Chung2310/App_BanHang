@@ -119,7 +119,7 @@ public class DangNhapActivity extends AppCompatActivity {
                             if(userModel.isSuccess()){
                                 isLogin = true;
                                 Paper.book().write("islogin",isLogin);
-
+                                Paper.book().write("user",userModel.getResult());
                                 Utils.user_current = (User) userModel.getResult();
                                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                                 startActivity(intent);
