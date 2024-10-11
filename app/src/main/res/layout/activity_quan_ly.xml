@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.QuanLyActivity">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolBarQL"
+        app:title="Quản Lý"
+        android:background="#FF9800"
+        app:layout_constraintTop_toTopOf="parent"
+        app:titleTextColor="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize">
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/toolBarQL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:weightSum="2"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <androidx.appcompat.widget.AppCompatButton
+                android:background="@drawable/button1"
+                android:elevation="4dp"
+                android:id="@+id/managerThem"
+                android:text="Thêm Sản Phẩm"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <androidx.appcompat.widget.AppCompatButton
+                android:background="@drawable/button1"
+                android:layout_marginTop="10dp"
+                android:elevation="4dp"
+                android:id="@+id/managerXoa"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:text="Xóa Sản Phẩm"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_marginTop="10dp"
+                android:elevation="4dp"
+                android:background="@drawable/button1"
+                android:id="@+id/managerSua"
+                android:text="Sửa Sản Phẩm"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -125,6 +125,10 @@ public class MainActivity extends AppCompatActivity {
                         Intent dangxuat = new Intent(getApplicationContext(),DangNhapActivity.class);
                         startActivity(dangxuat);
                         break;
+                    case 8:
+                        Intent manager = new Intent(getApplicationContext(),QuanLyActivity.class);
+                        startActivity(manager);
+                        break;
                 }
             }
         });
@@ -154,6 +158,13 @@ public class MainActivity extends AppCompatActivity {
                 .subscribe(loaiSpModel -> {
                     if (loaiSpModel.isSuccess()) {
                         mangloaisp = loaiSpModel.getResult();
+                        if(Utils.user_current != null && "admin".equals(Utils.user_current.getChucvu())){
+                            Loaisp manager = new Loaisp();
+                            manager.setId(11);
+                            manager.setHinhanh("");
+                            manager.setTensanpham("Quản Lý");
+                            mangloaisp.add(manager);
+                        }
                         loaiSanPhamAdapter = new LoaiSanPhamAdapter(getApplicationContext(), mangloaisp);
                         listViewMHC.setAdapter(loaiSanPhamAdapter);
                     } else {

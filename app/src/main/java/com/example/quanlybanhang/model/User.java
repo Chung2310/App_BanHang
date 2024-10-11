@@ -1,8 +1,17 @@
 package com.example.quanlybanhang.model;
 
 public class User {
+
     int id;
-    String email,pass,name,sdt;
+    String email,pass,name,sdt,chucvu;
+
+    public String getChucvu() {
+        return chucvu;
+    }
+
+    public void setChucvu(String chucvu) {
+        this.chucvu = chucvu;
+    }
 
     public int getId() {
         return id;
