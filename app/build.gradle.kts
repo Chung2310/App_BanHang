@@ -29,6 +29,7 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+
 }
 
 dependencies {
@@ -54,5 +55,6 @@ dependencies {
     implementation ("io.github.pilgr:paperdb:2.7.2")
     implementation ("com.google.code.gson:gson:2.8.6")
     implementation ("com.airbnb.android:lottie:3.4.0")
+    implementation ("com.github.dhaval2404:imagepicker:2.1")
 
 }

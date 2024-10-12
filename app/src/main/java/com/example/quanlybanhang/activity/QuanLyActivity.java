@@ -1,5 +1,6 @@
 package com.example.quanlybanhang.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -22,6 +23,17 @@ public class QuanLyActivity extends AppCompatActivity {
         setContentView(R.layout.activity_quan_ly);
         anhXa();
         actionToolBar();
+        actionButton();
+    }
+
+    private void actionButton() {
+        btnThem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),ThemSPActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void actionToolBar() {

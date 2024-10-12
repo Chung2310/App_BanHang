@@ -3,10 +3,17 @@ package com.example.quanlybanhang.retrofit;
 import com.example.quanlybanhang.model.DonHangModel;
 import com.example.quanlybanhang.model.LoaiSpModel;
 import com.example.quanlybanhang.model.SanPhamMoiModel;
+import com.example.quanlybanhang.model.ThemSPModel;
 import com.example.quanlybanhang.model.UserModel;
 
 import io.reactivex.rxjava3.core.Observable;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
+import retrofit2.http.POST;
+import retrofit2.http.Part;
 import retrofit2.http.Query;
 
 public interface ApiBanHang {
@@ -60,4 +67,17 @@ public interface ApiBanHang {
     Observable<SanPhamMoiModel> search(
             @Query("search") String search
     );
+
+    @GET("themsanpham.php")
+    Observable<ThemSPModel> themsanpham(
+            @Query("tensp") String tensp,
+            @Query("gia") String gia,
+            @Query("hinhanh") String hinhanh,
+            @Query("mota") String mota,
+            @Query("loai") int loai
+    );
+
+    @Multipart
+    @POST("upload.php")
+    Call<ThemSPModel> uploadFile(@Part MultipartBody.Part file);
 }
