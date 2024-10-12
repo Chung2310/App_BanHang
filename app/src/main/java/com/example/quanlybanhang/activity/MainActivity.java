@@ -161,7 +161,7 @@ public class MainActivity extends AppCompatActivity {
                         if(Utils.user_current != null && "admin".equals(Utils.user_current.getChucvu())){
                             Loaisp manager = new Loaisp();
                             manager.setId(11);
-                            manager.setHinhanh("");
+                            manager.setHinhanh("https://icons8.com/icon/11224/manager");
                             manager.setTensanpham("Quản Lý");
                             mangloaisp.add(manager);
                         }

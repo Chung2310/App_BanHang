@@ -14,54 +14,22 @@
         app:titleTextColor="@color/white"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize">
-
+        <ImageView
+            android:id="@+id/managerThem"
+            android:src="@drawable/baseline_add_circle_outline_24"
+            android:layout_marginRight="10dp"
+            android:layout_gravity="right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
     </androidx.appcompat.widget.Toolbar>
-
-    <LinearLayout
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:orientation="vertical"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycleView_QL"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolBarQL"
+        android:layout_margin="5dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <LinearLayout
-            android:weightSum="2"
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <androidx.appcompat.widget.AppCompatButton
-                android:background="@drawable/button1"
-                android:elevation="4dp"
-                android:id="@+id/managerThem"
-                android:text="Thêm Sản Phẩm"
-                android:textSize="20dp"
-                android:textStyle="bold"
-                android:layout_weight="1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-            <androidx.appcompat.widget.AppCompatButton
-                android:background="@drawable/button1"
-                android:layout_marginTop="10dp"
-                android:elevation="4dp"
-                android:id="@+id/managerXoa"
-                android:textSize="20dp"
-                android:textStyle="bold"
-                android:text="Xóa Sản Phẩm"
-                android:layout_weight="1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-            <androidx.appcompat.widget.AppCompatButton
-                android:layout_marginTop="10dp"
-                android:elevation="4dp"
-                android:background="@drawable/button1"
-                android:id="@+id/managerSua"
-                android:text="Sửa Sản Phẩm"
-                android:textSize="20dp"
-                android:textStyle="bold"
-                android:layout_weight="1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-        </LinearLayout>
-    </LinearLayout>
+        android:layout_height="0dp">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

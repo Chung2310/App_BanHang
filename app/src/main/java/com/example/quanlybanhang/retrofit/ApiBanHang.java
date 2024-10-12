@@ -68,8 +68,23 @@ public interface ApiBanHang {
             @Query("search") String search
     );
 
+    @GET("xoa.php")
+    Observable<ThemSPModel> xoaSP(
+            @Query("id") int id
+    );
+
     @GET("themsanpham.php")
     Observable<ThemSPModel> themsanpham(
+            @Query("tensp") String tensp,
+            @Query("gia") String gia,
+            @Query("hinhanh") String hinhanh,
+            @Query("mota") String mota,
+            @Query("loai") int loai
+    );
+
+    @GET("suasanpham.php")
+    Observable<ThemSPModel> suasanpham(
+            @Query("id") int id,
             @Query("tensp") String tensp,
             @Query("gia") String gia,
             @Query("hinhanh") String hinhanh,

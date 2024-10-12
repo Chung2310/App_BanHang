@@ -18,11 +18,13 @@ import androidx.activity.EdgeToEdge;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.quanlybanhang.R;
+import com.example.quanlybanhang.model.SanPhamMoi;
 import com.example.quanlybanhang.model.ThemSPModel;
 import com.example.quanlybanhang.retrofit.ApiBanHang;
 import com.example.quanlybanhang.retrofit.RetrofitClient;
@@ -45,6 +47,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ThemSPActivity extends AppCompatActivity {
+    Toolbar toolbar;
     Spinner spinner;
     TextInputEditText tsp_ten,tsp_gia,tsp_mota,tsp_hinhanh;
     AppCompatButton btn_them;
@@ -53,14 +56,45 @@ public class ThemSPActivity extends AppCompatActivity {
     CompositeDisposable compositeDisposable = new CompositeDisposable();
     ImageView imageView;
     String mediaPath;
+    SanPhamMoi sanPhamSua;
+    boolean flag = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_them_spactivity);
         apiBanHang = RetrofitClient.getInstance(Utils.BASE_URL).create(ApiBanHang.class);
+
         anhXa();
         initData();
+
+
+        Intent intent = getIntent();
+        sanPhamSua = (SanPhamMoi) intent.getSerializableExtra("sua");
+        if(sanPhamSua == null){
+            flag = false;
+        }else {
+            flag = true;
+            btn_them.setText("Sửa");
+            tsp_ten.setText(sanPhamSua.getTensp());
+            tsp_gia.setText(sanPhamSua.getGiasp());
+            tsp_hinhanh.setText(sanPhamSua.getHinhanh());
+            tsp_mota.setText(sanPhamSua.getMota());
+            spinner.setSelection(sanPhamSua.getLoai());
+        }
+
+        actionToolBar();
+    }
+
+    private void actionToolBar() {
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 
     private void initData() {
@@ -85,7 +119,12 @@ public class ThemSPActivity extends AppCompatActivity {
         btn_them.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                themsp();
+                if(flag == false){
+                    themsp();
+                }
+                else {
+                    suaSanPham();
+                }
             }
         });
         imageView.setOnClickListener(new View.OnClickListener() {
@@ -99,6 +138,38 @@ public class ThemSPActivity extends AppCompatActivity {
                         .start();
             }
         });
+    }
+
+    private void suaSanPham() {
+        int id = sanPhamSua.getId();
+        String str_ten = tsp_ten.getText().toString().trim();
+        String str_gia = tsp_gia.getText().toString().trim();
+        String str_hinhanh = tsp_hinhanh.getText().toString().trim();
+        String str_mota = tsp_mota.getText().toString().trim();
+        if(TextUtils.isEmpty(str_ten) || TextUtils.isEmpty(str_gia) || TextUtils.isEmpty(str_hinhanh) || TextUtils.isEmpty(str_mota) || loai < 1) {
+            Toast.makeText(getApplicationContext(),"Vui lòng nhập đủ thông tin",Toast.LENGTH_LONG).show();
+        }
+        else {
+            compositeDisposable.add(apiBanHang.suasanpham(id,str_ten,str_gia,str_hinhanh,str_mota,(loai))
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(
+                            ThemSPModel -> {
+                                if(ThemSPModel.isSuccess()){
+                                    Toast.makeText(getApplicationContext(),ThemSPModel.getMessage(),Toast.LENGTH_LONG).show();
+                                    Intent intent = new Intent(getApplicationContext(),QuanLyActivity.class);
+                                    startActivity(intent);
+                                }
+                                else {
+                                    Toast.makeText(getApplicationContext(),ThemSPModel.getMessage(),Toast.LENGTH_LONG).show();
+                                }
+
+                            },throwable -> {
+                                Toast.makeText(getApplicationContext(),throwable.getMessage(),Toast.LENGTH_LONG).show();
+                            }
+                    )
+            );
+        }
     }
 
     @Override
@@ -125,6 +196,8 @@ public class ThemSPActivity extends AppCompatActivity {
                             ThemSPModel -> {
                                 if(ThemSPModel.isSuccess()){
                                     Toast.makeText(getApplicationContext(),ThemSPModel.getMessage(),Toast.LENGTH_LONG).show();
+                                    Intent intent = new Intent(getApplicationContext(),QuanLyActivity.class);
+                                    startActivity(intent);
                                 }
                                 else {
                                     Toast.makeText(getApplicationContext(),ThemSPModel.getMessage(),Toast.LENGTH_LONG).show();
@@ -168,7 +241,8 @@ public class ThemSPActivity extends AppCompatActivity {
                 if (serverResponse != null) {
                     if (serverResponse.isSuccess()) {
                         tsp_hinhanh.setText(serverResponse.getName());
-                        Toast.makeText(getApplicationContext(), "Tải lên thành công", Toast.LENGTH_LONG).show();
+                        Log.d("image",serverResponse.getName());
+
                     } else {
                         Toast.makeText(getApplicationContext(), serverResponse.getMessage(), Toast.LENGTH_LONG).show();
                     }
@@ -191,5 +265,6 @@ public class ThemSPActivity extends AppCompatActivity {
         tsp_mota = findViewById(R.id.tsp_mota);
         btn_them = findViewById(R.id.tsp_btn);
         imageView = findViewById(R.id.tsp_img);
+        toolbar = findViewById(R.id.toolBarTSP);
     }
 }
