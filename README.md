@@ -6,5 +6,5 @@
 ## Công cụ hỗ trợ
 - Android Studio(Java)
 - Xampp
-- Viết sever local bằng PHP
+- Viết server local bằng PHP
 - mySql
