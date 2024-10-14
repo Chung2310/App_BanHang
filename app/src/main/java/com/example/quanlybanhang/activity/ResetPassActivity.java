@@ -3,6 +3,7 @@ package com.example.quanlybanhang.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -31,7 +32,6 @@ public class ResetPassActivity extends AppCompatActivity {
     ApiBanHang apiBanHang;
     CompositeDisposable compositeDisposable = new CompositeDisposable();
     ProgressBar progressBar;
-    TextView txtloi;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +55,6 @@ public class ResetPassActivity extends AppCompatActivity {
                             .subscribe(
                                     userModel -> {
                                         if (userModel.isSuccess()){
-                                            Toast.makeText(getApplicationContext(), userModel.getMessage(), Toast.LENGTH_LONG).show();
                                             Intent intent = new Intent(getApplicationContext(), DangNhapActivity.class);
                                             startActivity(intent);
                                         }
@@ -64,8 +63,8 @@ public class ResetPassActivity extends AppCompatActivity {
                                         }
                                         progressBar.setVisibility(View.INVISIBLE);
                                     }, throwable -> {
-                                        Toast.makeText(getApplicationContext(),throwable.getMessage(),Toast.LENGTH_LONG).show();
-                                        txtloi.setText(throwable.getMessage());
+
+                                        Log.d("loi",throwable.getMessage());
                                         progressBar.setVisibility(View.INVISIBLE);
                                     }
                             ));
@@ -79,7 +78,6 @@ public class ResetPassActivity extends AppCompatActivity {
         email = findViewById(R.id.edtResetPass);
         btnReset = findViewById(R.id.btnResetPass);
         progressBar = findViewById(R.id.progressRS);
-        txtloi = findViewById(R.id.txtloi);
     }
 
     @Override

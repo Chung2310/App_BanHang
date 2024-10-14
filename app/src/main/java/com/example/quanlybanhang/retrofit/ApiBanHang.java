@@ -2,6 +2,7 @@ package com.example.quanlybanhang.retrofit;
 
 import com.example.quanlybanhang.model.DonHangModel;
 import com.example.quanlybanhang.model.LoaiSpModel;
+import com.example.quanlybanhang.model.MessageModel;
 import com.example.quanlybanhang.model.SanPhamMoiModel;
 import com.example.quanlybanhang.model.ThemSPModel;
 import com.example.quanlybanhang.model.UserModel;
@@ -71,6 +72,11 @@ public interface ApiBanHang {
     @GET("xoa.php")
     Observable<ThemSPModel> xoaSP(
             @Query("id") int id
+    );
+
+    @GET("xacthucemail.php")
+    Observable<MessageModel> xacthuc(
+            @Query("email") String email
     );
 
     @GET("themsanpham.php")
