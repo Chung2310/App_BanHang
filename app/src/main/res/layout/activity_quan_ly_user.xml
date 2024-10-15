@@ -5,10 +5,10 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.QuanLyActivity">
+    tools:context=".activity.QuanLyUserActivity">
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolBarQL"
-        app:title="Quản Lý"
+        android:id="@+id/toolBarQLUser"
+        app:title="Quản Lý Người Dùng"
         android:background="#FF9800"
         app:layout_constraintTop_toTopOf="parent"
         app:titleTextColor="@color/white"
@@ -18,14 +18,9 @@
             android:layout_gravity="right"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
+
             <ImageView
-                android:id="@+id/quanly_User"
-                android:layout_marginRight="10dp"
-                android:src="@drawable/baseline_supervised_user_circle_24"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <ImageView
-                android:id="@+id/managerThem"
+                android:id="@+id/managerThemUser"
                 android:src="@drawable/baseline_add_circle_outline_24"
                 android:layout_marginRight="10dp"
 
@@ -35,13 +30,12 @@
 
     </androidx.appcompat.widget.Toolbar>
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycleView_QL"
+        android:id="@+id/recycleView_QLUser"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolBarQL"
+        app:layout_constraintTop_toBottomOf="@+id/toolBarQLUser"
         android:layout_margin="5dp"
         android:layout_width="match_parent"
         android:layout_height="0dp">
 
     </androidx.recyclerview.widget.RecyclerView>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

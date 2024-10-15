@@ -40,14 +40,13 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class QuanLyActivity extends AppCompatActivity {
-    ImageView btnThem;
+    ImageView btnThem,quanly_User;
     Toolbar toolbar;
     RecyclerView recyclerView;
     ApiBanHang apiBanHang;
     List<SanPhamMoi> list;
     SanPhamMoiAdapter adapter;
     SanPhamMoi sanPhamSuaXoa;
-
     CompositeDisposable compositeDisposable = new CompositeDisposable();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,7 +84,13 @@ public class QuanLyActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
+        quanly_User.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),QuanLyUserActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void actionToolBar() {
@@ -106,6 +111,7 @@ public class QuanLyActivity extends AppCompatActivity {
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this,2);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(layoutManager);
+        quanly_User = findViewById(R.id.quanly_User);
     }
 
     @Override
@@ -142,7 +148,6 @@ public class QuanLyActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(),ThemSPActivity.class);
         intent.putExtra("sua",sanPhamSuaXoa);
         startActivity(intent);
-
     }
 
     @Override

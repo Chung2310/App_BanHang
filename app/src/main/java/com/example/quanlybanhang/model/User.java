@@ -1,17 +1,12 @@
 package com.example.quanlybanhang.model;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
 
     int id;
     String email,pass,name,sdt,chucvu;
 
-    public String getChucvu() {
-        return chucvu;
-    }
-
-    public void setChucvu(String chucvu) {
-        this.chucvu = chucvu;
-    }
 
     public int getId() {
         return id;
@@ -51,5 +46,13 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getChucvu() {
+        return chucvu;
+    }
+
+    public void setChucvu(String chucvu) {
+        this.chucvu = chucvu;
     }
 }

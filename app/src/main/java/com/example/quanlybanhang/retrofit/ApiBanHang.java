@@ -6,6 +6,7 @@ import com.example.quanlybanhang.model.MessageModel;
 import com.example.quanlybanhang.model.SanPhamMoiModel;
 import com.example.quanlybanhang.model.ThemSPModel;
 import com.example.quanlybanhang.model.UserModel;
+import com.example.quanlybanhang.model.UsersModel;
 
 import io.reactivex.rxjava3.core.Observable;
 import okhttp3.MultipartBody;
@@ -24,6 +25,9 @@ public interface ApiBanHang {
     @GET("getspmoi.php")
     Observable<SanPhamMoiModel> getSpMoi();
 
+    @GET("getuser.php")
+    Observable<UsersModel> getUser();
+
     @GET("chitiet.php")
     Observable<SanPhamMoiModel> getSanPham(
             @Query("page") int page,
@@ -37,6 +41,16 @@ public interface ApiBanHang {
             @Query("name") String name,
             @Query("sdt") String sdt
     );
+
+    @GET("themuser.php")
+    Observable<UserModel> themuser(
+            @Query("email") String email,
+            @Query("pass") String pass,
+            @Query("name") String name,
+            @Query("sdt") String sdt,
+            @Query("chucvu") String chucvu
+    );
+
     @GET("dangnhap.php")
     Observable<UserModel> dangNhap(
             @Query("email") String email,
@@ -74,6 +88,11 @@ public interface ApiBanHang {
             @Query("id") int id
     );
 
+    @GET("xoauser.php")
+    Observable<MessageModel> xoaUser(
+            @Query("id") int id
+    );
+
     @GET("xacthucemail.php")
     Observable<MessageModel> xacthuc(
             @Query("email") String email
@@ -96,6 +115,16 @@ public interface ApiBanHang {
             @Query("hinhanh") String hinhanh,
             @Query("mota") String mota,
             @Query("loai") int loai
+    );
+
+    @GET("suauser.php")
+    Observable<MessageModel> suauser(
+            @Query("id") int id,
+            @Query("email") String email,
+            @Query("pass") String pass,
+            @Query("name") String name,
+            @Query("sdt") String sdt,
+            @Query("chucvu") String chucvu
     );
 
     @Multipart

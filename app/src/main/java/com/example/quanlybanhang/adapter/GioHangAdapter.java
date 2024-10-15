@@ -50,7 +50,7 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.MyViewHo
 
         Glide.with(context).load(gioHang.getHinhsp()).into(holder.item_giohang_image);
         DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
-        holder.item_giohang_gia.setText( decimalFormat.format((gioHang.getGiasp())) + "Đ");
+        holder.item_giohang_gia.setText(decimalFormat.format((gioHang.getGiasp())) + "Đ");
 
         long gia = gioHang.getSoluong() * gioHang.getGiasp();
         holder.item_giohang_tong.setText(decimalFormat.format(gia) + "Đ");
@@ -58,14 +58,12 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.MyViewHo
         holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(b){
+                if (b) {
                     Utils.mangmuahang.add(gioHang);
                     EventBus.getDefault().postSticky(new TinhTongEvent());
-                }
-                else
-                {
-                    for (int i=0;i<Utils.mangmuahang.size();i++){
-                        if(Utils.mangmuahang.get(i).getIdsp() == gioHang.getIdsp()){
+                } else {
+                    for (int i = 0; i < Utils.mangmuahang.size(); i++) {
+                        if (Utils.mangmuahang.get(i).getIdsp() == gioHang.getIdsp()) {
                             Utils.mangmuahang.remove(i);
                             EventBus.getDefault().postSticky(new TinhTongEvent());
                         }
@@ -86,8 +84,7 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.MyViewHo
                         long gia = gioHangList.get(pos).getSoluong() * gioHangList.get(pos).getGiasp();
                         holder.item_giohang_tong.setText(decimalFormat.format(gia) + "Đ");
                         EventBus.getDefault().postSticky(new TinhTongEvent());
-                    }
-                    else if(gioHangList.get(pos).getSoluong() == 1){
+                    } else if (gioHangList.get(pos).getSoluong() == 1) {
                         AlertDialog.Builder builder = new AlertDialog.Builder(view.getRootView().getContext());
                         builder.setTitle("Thông báo");
                         builder.setMessage("Bạn có muốn xóa sản phẩm này khỏi giỏ hàng ?");
@@ -108,12 +105,12 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.MyViewHo
                         builder.show();
 
 
-
                     }
                 } else if (giatri == 2) {
                     if (gioHangList.get(pos).getSoluong() < 11) {
                         int soluongmoi = gioHangList.get(pos).getSoluong() + 1;
                         gioHangList.get(pos).setSoluong(soluongmoi);
+                        holder.item_giohang_soluong.setText(gioHangList.get(pos).getSoluong() + " ");
                     }
                 }
 
@@ -162,4 +159,3 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.MyViewHo
         }
     }
 }
-  
