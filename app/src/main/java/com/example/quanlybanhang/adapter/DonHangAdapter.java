@@ -6,7 +6,6 @@ import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,10 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.quanlybanhang.Interface.ItemClickListener;
 import com.example.quanlybanhang.R;
-import com.example.quanlybanhang.activity.ChiTietActivity;
-import com.example.quanlybanhang.activity.ChitietDonHangActivity;
 import com.example.quanlybanhang.model.DonHang;
-import com.example.quanlybanhang.model.EventBus.SuaXoaEventUser;
 import com.example.quanlybanhang.model.EventBus.SuaXoaEventorder;
 
 import org.greenrobot.eventbus.EventBus;

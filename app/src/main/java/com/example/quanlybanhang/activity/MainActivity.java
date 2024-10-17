@@ -109,6 +109,14 @@ public class MainActivity extends AppCompatActivity {
                         dienthoai.putExtra("loai",1);
                         startActivity(dienthoai);
                         break;
+                    case 3:
+                        Intent thongtin = new Intent(getApplicationContext(),ThongTinActivity.class);
+                        startActivity(thongtin);
+                        break;
+                    case 4:
+                        Intent lienhe = new Intent(getApplicationContext(),LienHeActivity.class);
+                        startActivity(lienhe);
+                        break;
                     case 5:
                         Intent itemother = new Intent(getApplicationContext(), DienThoaiActivity.class);
                         itemother.putExtra("loai",3);

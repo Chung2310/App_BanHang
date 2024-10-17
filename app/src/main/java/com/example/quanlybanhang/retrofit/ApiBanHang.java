@@ -33,7 +33,7 @@ public interface ApiBanHang {
     @GET("getItem.php")
     Observable<Item2Model> getItem();
 
-    @GET(".php")
+    @GET("getorder.php")
     Observable<DonHangModel> getOrder();
 
     @GET("chitiet.php")
