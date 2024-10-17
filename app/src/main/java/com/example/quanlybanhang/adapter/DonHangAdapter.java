@@ -53,10 +53,7 @@ public class DonHangAdapter extends RecyclerView.Adapter<DonHangAdapter.MyViewHo
             @Override
             public void onClick(View view, int pos, boolean isLongClick) {
                 if (!isLongClick) {
-                    Intent intent = new Intent(context, ChitietDonHangActivity.class);
-                    intent.putExtra("chitietdh",donHang);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    context.startActivity(intent);
+
                 } else {
                     EventBus.getDefault().postSticky(new SuaXoaEventorder(donHang));
                 }

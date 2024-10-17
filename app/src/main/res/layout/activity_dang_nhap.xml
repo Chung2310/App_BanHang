@@ -96,6 +96,7 @@
             android:layout_height="wrap_content"/>
     </LinearLayout>
     <TextView
+        android:visibility="invisible"
         android:id="@+id/resetPass"
         app:layout_constraintTop_toBottomOf="@id/viewDK"
         android:text="Quên mật khẩu"
