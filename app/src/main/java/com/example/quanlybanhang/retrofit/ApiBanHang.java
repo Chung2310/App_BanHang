@@ -1,6 +1,8 @@
 package com.example.quanlybanhang.retrofit;
 
 import com.example.quanlybanhang.model.DonHangModel;
+import com.example.quanlybanhang.model.Item2;
+import com.example.quanlybanhang.model.Item2Model;
 import com.example.quanlybanhang.model.LoaiSpModel;
 import com.example.quanlybanhang.model.MessageModel;
 import com.example.quanlybanhang.model.SanPhamMoiModel;
@@ -27,6 +29,12 @@ public interface ApiBanHang {
 
     @GET("getuser.php")
     Observable<UsersModel> getUser();
+
+    @GET("getItem.php")
+    Observable<Item2Model> getItem();
+
+    @GET(".php")
+    Observable<DonHangModel> getOrder();
 
     @GET("chitiet.php")
     Observable<SanPhamMoiModel> getSanPham(
@@ -88,8 +96,18 @@ public interface ApiBanHang {
             @Query("id") int id
     );
 
+    @GET("xoaorder.php")
+    Observable<MessageModel> xoaDH(
+            @Query("id") int id
+    );
+
     @GET("xoauser.php")
     Observable<MessageModel> xoaUser(
+            @Query("id") int id
+    );
+
+    @GET("getuserbyid.php")
+    Observable<UserModel> getUser(
             @Query("id") int id
     );
 

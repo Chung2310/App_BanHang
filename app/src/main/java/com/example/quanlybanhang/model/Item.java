@@ -5,6 +5,8 @@ public class Item {
     String tensp;
     int soluong;
     String hinhanh;
+
+
     public int getIdsp() {
         return idsp;
     }

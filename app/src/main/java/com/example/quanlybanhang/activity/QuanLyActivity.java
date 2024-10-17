@@ -40,7 +40,7 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class QuanLyActivity extends AppCompatActivity {
-    ImageView btnThem,quanly_User;
+    ImageView btnThem,quanly_User,quanly_Order;
     Toolbar toolbar;
     RecyclerView recyclerView;
     ApiBanHang apiBanHang;
@@ -91,6 +91,13 @@ public class QuanLyActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        quanly_Order.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), QuanLyOrderActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void actionToolBar() {
@@ -99,7 +106,8 @@ public class QuanLyActivity extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -112,6 +120,7 @@ public class QuanLyActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(layoutManager);
         quanly_User = findViewById(R.id.quanly_User);
+        quanly_Order = findViewById(R.id.quanly_Order);
     }
 
     @Override

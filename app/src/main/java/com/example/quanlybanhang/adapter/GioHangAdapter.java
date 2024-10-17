@@ -111,6 +111,9 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.MyViewHo
                         int soluongmoi = gioHangList.get(pos).getSoluong() + 1;
                         gioHangList.get(pos).setSoluong(soluongmoi);
                         holder.item_giohang_soluong.setText(gioHangList.get(pos).getSoluong() + " ");
+                        long gia = gioHangList.get(pos).getSoluong() * gioHangList.get(pos).getGiasp();
+                        holder.item_giohang_tong.setText(decimalFormat.format(gia) + "Đ");
+                        EventBus.getDefault().postSticky(new TinhTongEvent());
                     }
                 }
 
