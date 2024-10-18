@@ -12,9 +12,7 @@
         app:layout_constraintTop_toTopOf="parent"
         android:text="Đăng ký"
         android:gravity="center"
-        android:layout_marginTop="10dp"
         android:textFontWeight="@integer/material_motion_duration_short_2"
-        android:padding="5dp"
         android:textStyle="bold"
         android:textSize="40dp"
         android:textColor="#056109"
@@ -22,7 +20,6 @@
         android:layout_height="wrap_content"/>
     <com.google.android.material.textfield.TextInputLayout
         app:layout_constraintTop_toBottomOf="@+id/txtdangnhap"
-        android:layout_marginTop="5dp"
         android:id="@+id/emailDK"
         style="@style/Widget.Material3.TextInputEditText.OutlinedBox"
         android:layout_width="match_parent"
@@ -41,7 +38,6 @@
 
     <com.google.android.material.textfield.TextInputLayout
         app:layout_constraintTop_toBottomOf="@+id/emailDK"
-        android:layout_marginTop="5dp"
         android:id="@+id/passwordDK"
         style="@style/Widget.Material3.TextInputEditText.OutlinedBox"
         android:layout_width="match_parent"
@@ -60,7 +56,6 @@
 
     <com.google.android.material.textfield.TextInputLayout
         app:layout_constraintTop_toBottomOf="@+id/passwordDK"
-        android:layout_marginTop="5dp"
         android:id="@+id/passwordXT"
         style="@style/Widget.Material3.TextInputEditText.OutlinedBox"
         android:layout_width="match_parent"
@@ -79,7 +74,6 @@
 
     <com.google.android.material.textfield.TextInputLayout
         app:layout_constraintTop_toBottomOf="@+id/passwordXT"
-        android:layout_marginTop="5dp"
         android:id="@+id/sdtxacthuc"
         style="@style/Widget.Material3.TextInputEditText.OutlinedBox"
         android:layout_width="match_parent"
@@ -98,7 +92,6 @@
 
     <com.google.android.material.textfield.TextInputLayout
         app:layout_constraintTop_toBottomOf="@+id/sdtxacthuc"
-        android:layout_marginTop="5dp"
         android:id="@+id/name_user"
         style="@style/Widget.Material3.TextInputEditText.OutlinedBox"
         android:layout_width="match_parent"
@@ -118,7 +111,6 @@
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnDangKy"
         app:layout_constraintTop_toBottomOf="@+id/name_user"
-        android:layout_marginTop="10dp"
         android:text="Đăng ký"
         android:background="@drawable/button1"
         android:layout_marginLeft="40dp"

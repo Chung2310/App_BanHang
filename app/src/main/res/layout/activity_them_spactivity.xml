@@ -8,7 +8,7 @@
     tools:context=".activity.ThemSPActivity">
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolBarTSP"
-        app:title="Thêm Sản Phẩm"
+        app:title="Sản Phẩm"
         android:background="#FF9800"
         app:layout_constraintTop_toTopOf="parent"
         app:titleTextColor="@color/white"

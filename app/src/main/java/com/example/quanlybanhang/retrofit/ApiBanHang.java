@@ -1,8 +1,6 @@
 package com.example.quanlybanhang.retrofit;
 
 import com.example.quanlybanhang.model.DonHangModel;
-import com.example.quanlybanhang.model.Item2;
-import com.example.quanlybanhang.model.Item2Model;
 import com.example.quanlybanhang.model.LoaiSpModel;
 import com.example.quanlybanhang.model.MessageModel;
 import com.example.quanlybanhang.model.SanPhamMoiModel;
@@ -12,7 +10,6 @@ import com.example.quanlybanhang.model.UsersModel;
 
 import io.reactivex.rxjava3.core.Observable;
 import okhttp3.MultipartBody;
-import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Multipart;
@@ -29,9 +26,6 @@ public interface ApiBanHang {
 
     @GET("getuser.php")
     Observable<UsersModel> getUser();
-
-    @GET("getItem.php")
-    Observable<Item2Model> getItem();
 
     @GET("getorder.php")
     Observable<DonHangModel> getOrder();
