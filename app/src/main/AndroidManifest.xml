@@ -17,6 +17,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".activity.HoaDonActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.LienHeActivity"
             android:exported="false" />
         <activity

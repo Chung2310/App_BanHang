@@ -43,6 +43,7 @@ public class XemDonActivity extends AppCompatActivity {
                 .subscribe(
                         donHangModel -> {
                             if (donHangModel.getResult() != null && !donHangModel.getResult().isEmpty()) {
+                                Log.d("json",donHangModel.getResult().toString());
                                 DonHangAdapter adapter = new DonHangAdapter(getApplicationContext(), donHangModel.getResult());
                                 recyclerView.setAdapter(adapter);
                             } else {

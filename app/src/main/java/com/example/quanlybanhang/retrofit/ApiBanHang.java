@@ -80,6 +80,11 @@ public interface ApiBanHang {
             @Query("iduser") int iduser
     );
 
+    @GET("xemhoadon.php")
+    Observable<DonHangModel> xemHoaDon(
+            @Query("iduser") int iduser
+    );
+
     @GET("timkiem.php")
     Observable<SanPhamMoiModel> search(
             @Query("search") String search

@@ -2,10 +2,28 @@ package com.example.quanlybanhang.model;
 
 public class Item {
     int idsp;
+    long giasp;
+    long tonggia;
     String tensp;
     int soluong;
     String hinhanh;
 
+
+    public long getGiasp() {
+        return giasp;
+    }
+
+    public void setGiasp(long giasp) {
+        this.giasp = giasp;
+    }
+
+    public long getTonggia() {
+        return tonggia;
+    }
+
+    public void setTonggia(long tonggia) {
+        this.tonggia = tonggia;
+    }
 
     public int getIdsp() {
         return idsp;

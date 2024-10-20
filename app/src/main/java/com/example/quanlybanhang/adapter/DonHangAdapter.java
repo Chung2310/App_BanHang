@@ -2,6 +2,7 @@ package com.example.quanlybanhang.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -48,17 +49,6 @@ public class DonHangAdapter extends RecyclerView.Adapter<DonHangAdapter.MyViewHo
         holder.recyclerViewChitiet.setLayoutManager(linearLayout);
         holder.recyclerViewChitiet.setAdapter(chitietAdapter);
         holder.recyclerViewChitiet.setRecycledViewPool(viewPool);
-
-        holder.setItemClickListener(new ItemClickListener() {
-            @Override
-            public void onClick(View view, int pos, boolean isLongClick) {
-                if (!isLongClick) {
-
-                } else {
-                    EventBus.getDefault().postSticky(new SuaXoaEventorder(donHang));
-                }
-            }
-        });
     }
 
     @Override
@@ -66,41 +56,13 @@ public class DonHangAdapter extends RecyclerView.Adapter<DonHangAdapter.MyViewHo
         return listdonhang.size();
     }
 
-    public  class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnCreateContextMenuListener, View.OnLongClickListener{
+    public  class MyViewHolder extends RecyclerView.ViewHolder{
         TextView txtdonhang;
         RecyclerView recyclerViewChitiet;
-        private ItemClickListener itemClickListener;
-
-
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             txtdonhang = itemView.findViewById(R.id.iddonhang);
             recyclerViewChitiet = itemView.findViewById(R.id.recycleView_chitietdonhang);
-            itemView.setOnClickListener(this);
-            itemView.setOnCreateContextMenuListener(this);
-            itemView.setOnLongClickListener(this);
         }
-
-        public void setItemClickListener(ItemClickListener itemClickListener) {
-            this.itemClickListener = itemClickListener;
-        }
-
-        @Override
-        public void onClick(View view) {
-            itemClickListener.onClick(view, getAdapterPosition(), false);
-        }
-
-        @Override
-        public void onCreateContextMenu(ContextMenu contextMenu, View view, ContextMenu.ContextMenuInfo contextMenuInfo) {
-            contextMenu.add(0, 0, getAdapterPosition(), "Xóa");
-        }
-
-        @Override
-        public boolean onLongClick(View view) {
-            itemClickListener.onClick(view, getAdapterPosition(), true);
-            return false;
-        }
-
     }
-
 }

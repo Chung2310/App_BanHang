@@ -86,7 +86,11 @@ public class ThanhToanActivity extends AppCompatActivity {
                                         if (userModel.isSuccess()) {
                                             Utils.mangmuahang.clear();
                                             Toast.makeText(getApplicationContext(), "Thanh toán thành công", Toast.LENGTH_LONG).show();
-                                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                            Intent intent = new Intent(getApplicationContext(), HoaDonActivity.class);
+                                            intent.putExtra("sdt",str_sdt);
+                                            intent.putExtra("tongtien",tongtien);
+                                            intent.putExtra("diachi",str_diachi);
+                                            intent.putExtra("soluong",totalItem);
                                             startActivity(intent);
                                             finish();
                                         } else {

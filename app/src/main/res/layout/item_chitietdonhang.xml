@@ -28,12 +28,36 @@
                     android:textSize="15dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
-                <TextView
-                    android:id="@+id/item_soluong_chitiet"
-                    android:textSize="15dp"
-                    android:text="Số lượng: 02"
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_weight="3"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_weight="1"
+                        android:id="@+id/item_soluong_chitiet"
+                        android:textSize="15dp"
+                        android:text="Số lượng: 02"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:gravity="center"
+                        android:layout_weight="1"
+                        android:id="@+id/item_dongia_chitiet"
+                        android:textSize="15dp"
+                        android:text="100000đ"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:gravity="center"
+                        android:layout_weight="1"
+                        android:id="@+id/item_tonggia_chitiet"
+                        android:textSize="15dp"
+                        android:text="100000đ"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
             </LinearLayout>
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
