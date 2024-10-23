@@ -41,6 +41,7 @@ public class HoaDonActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hoa_don);
+        Utils.chucnang = "HoaDon";
         anhXa();
         actionButton();
         getData();

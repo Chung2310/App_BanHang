@@ -50,6 +50,7 @@ public class QuanLyOrderActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Utils.chucnang = "QuanLyOrder";
         setContentView(R.layout.activity_quan_ly_order);
         apiBanHang = RetrofitClient.getInstance(Utils.BASE_URL).create(ApiBanHang.class);
         anhXa();

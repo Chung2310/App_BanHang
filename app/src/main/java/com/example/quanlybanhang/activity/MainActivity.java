@@ -13,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
@@ -65,6 +66,8 @@ public class MainActivity extends AppCompatActivity {
     NotificationBadge badge;
     FrameLayout frameLayout;
     ImageView imgSearch;
+    TextView user_ten,user_email,user_sdt;
+    ImageView user_img;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
         ActionBar();
 
         if(isConnected(this)){
+
             getSpmoi();
             ActionViewFlipper();
             getLoaiSanPham();
@@ -138,6 +142,13 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(manager);
                         break;
                 }
+            }
+        });
+        user_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),ChiTietUserActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -228,6 +239,10 @@ public class MainActivity extends AppCompatActivity {
         navigationView = findViewById(R.id.navigationviewMHC);
         listViewMHC = findViewById(R.id.listviewMHC);
         drawerLayout = findViewById(R.id.drawerlayout);
+        user_ten = findViewById(R.id.user_ten);
+        user_email = findViewById(R.id.user_email);
+        user_sdt = findViewById(R.id.user_sdt);
+        user_img = findViewById(R.id.user_img);
         mangloaisp = new ArrayList<>();
         mangSpmoi = new ArrayList<>();
         badge = findViewById(R.id.menu_sl_main);
@@ -255,7 +270,20 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        showInfo();
+    }
 
+    private void showInfo(){
+        user_ten.setText(Utils.user_current.getName());
+        user_email.setText(Utils.user_current.getEmail());
+        user_sdt.setText(Utils.user_current.getSdt());
+        //if(Utils.user_current.getHinhanh().contains(" ")){
+        //    Glide.with(getApplicationContext()).load(Utils.user_current.getHinhanh()).into(user_img);
+        //}
+       // else {
+        //    String hinh = Utils.BASE_URL+"images/"+Utils.user_current.getHinhanh();
+        //    Glide.with(getApplicationContext()).load(hinh).into(user_img);
+        //}
     }
 
     @Override

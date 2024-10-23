@@ -87,13 +87,60 @@
             android:id="@+id/navigationviewMHC"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <ListView
-                android:layout_marginTop="10dp"
-                android:id="@+id/listviewMHC"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:weightSum="5"
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_weight="4"
+                            android:id="@+id/user_ten"
+                            android:textStyle="bold"
+                            android:textSize="20dp"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"/>
+                        <ImageView
+                            android:id="@+id/user_img"
+                            android:src="@drawable/baseline_person_24"
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content">
+                        </ImageView>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:id="@+id/user_email"
+                            android:textSize="15dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:id="@+id/user_sdt"
+                            android:textSize="15dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                </LinearLayout>
+                <ListView
 
-            </ListView>
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/listviewMHC"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                </ListView>
+            </LinearLayout>
+
         </com.google.android.material.navigation.NavigationView>
     </androidx.drawerlayout.widget.DrawerLayout>
 

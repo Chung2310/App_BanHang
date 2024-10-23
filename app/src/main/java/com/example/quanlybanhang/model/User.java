@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class User implements Serializable {
 
     int id;
-    String email,pass,name,sdt,chucvu;
+    String email,pass,name,sdt,chucvu,hinhanh;
 
 
     public int getId() {
@@ -54,5 +54,13 @@ public class User implements Serializable {
 
     public void setChucvu(String chucvu) {
         this.chucvu = chucvu;
+    }
+
+    public String getHinhanh() {
+        return hinhanh;
+    }
+
+    public void setHinhanh(String hinhanh) {
+        this.hinhanh = hinhanh;
     }
 }
