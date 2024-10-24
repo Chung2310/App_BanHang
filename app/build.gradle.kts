@@ -57,4 +57,5 @@ dependencies {
     implementation ("com.airbnb.android:lottie:3.4.0")
     implementation ("com.github.dhaval2404:imagepicker:2.1")
 
+    implementation ("de.hdodenhof:circleimageview:3.1.0")
 }

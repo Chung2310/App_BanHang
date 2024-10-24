@@ -14,7 +14,113 @@
         app:titleTextColor="@color/white"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize">
-
+        <ImageView
+            android:id="@+id/CTuser_baomat"
+            android:src="@drawable/icon_lock"
+            android:layout_gravity="right"
+            android:layout_marginRight="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
     </androidx.appcompat.widget.Toolbar>
-    
+    <LinearLayout
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/toolBarCTUser"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <de.hdodenhof.circleimageview.CircleImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:id="@+id/profile_image_CTuser"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:src="@drawable/anhmeo3"
+                app:civ_border_width="2dp"
+                app:civ_border_color="#FF000000"
+                tools:ignore="MissingConstraints" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:weightSum="5"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:background="@drawable/vienview"
+                    android:id="@+id/CTuser_name"
+                    android:layout_weight="4"
+                    android:layout_width="0dp"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:text="Đỗ Đức Chung"
+                    android:gravity="center"
+                    android:layout_height="wrap_content"/>
+                <ImageView
+                    android:background="@drawable/vienview"
+                    android:id="@+id/CTuser_name_btn"
+                    android:src="@drawable/icon_pencil"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="5dp"
+                android:weightSum="5"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:background="@drawable/vienview"
+                    android:id="@+id/CTuser_email"
+                    android:layout_weight="4"
+                    android:layout_width="0dp"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:text="Chunga00d@gmail.com"
+                    android:gravity="center"
+                    android:layout_height="wrap_content"/>
+                <ImageView
+                    android:background="@drawable/vienview"
+                    android:id="@+id/CTuser_email_btn"
+                    android:src="@drawable/icon_pencil"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="5dp"
+                android:weightSum="5"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:background="@drawable/vienview"
+                    android:id="@+id/CTuser_sdt"
+                    android:layout_weight="4"
+                    android:layout_width="0dp"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:text="0961954521"
+                    android:gravity="center"
+                    android:layout_height="wrap_content"/>
+                <ImageView
+                    android:background="@drawable/vienview"
+                    android:id="@+id/CTuser_sdt_btn"
+                    android:src="@drawable/icon_pencil"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"/>
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

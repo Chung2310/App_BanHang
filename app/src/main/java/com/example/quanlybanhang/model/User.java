@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class User implements Serializable {
 
     int id;
-    String email,pass,name,sdt,chucvu,hinhanh;
+    String email,pass,name,sdt,chucvu,avatar;
 
 
     public int getId() {
@@ -56,11 +56,11 @@ public class User implements Serializable {
         this.chucvu = chucvu;
     }
 
-    public String getHinhanh() {
-        return hinhanh;
+    public String getAvatar() {
+        return avatar;
     }
 
-    public void setHinhanh(String hinhanh) {
-        this.hinhanh = hinhanh;
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 }

@@ -44,8 +44,11 @@ public class DangNhapActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_dang_nhap);
+
         anhXa();
         initcontrol();
+        txtemail.setText("");
+        txtpassword.setText("");
     }
 
     private void initcontrol() {
@@ -121,6 +124,7 @@ public class DangNhapActivity extends AppCompatActivity {
                                 Paper.book().write("islogin",isLogin);
                                 Paper.book().write("user",userModel.getResult());
                                 Utils.user_current = (User) userModel.getResult();
+                                Log.d("user",userModel.getResult().toString());
                                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                                 startActivity(intent);
                                 finish();

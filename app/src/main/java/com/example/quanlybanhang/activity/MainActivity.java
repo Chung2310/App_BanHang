@@ -42,6 +42,7 @@ import com.nex3z.notificationbadge.NotificationBadge;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import io.paperdb.Paper;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
@@ -67,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
     FrameLayout frameLayout;
     ImageView imgSearch;
     TextView user_ten,user_email,user_sdt;
-    ImageView user_img;
+    CircleImageView profile_image;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -144,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-        user_img.setOnClickListener(new View.OnClickListener() {
+        profile_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(),ChiTietUserActivity.class);
@@ -242,7 +243,7 @@ public class MainActivity extends AppCompatActivity {
         user_ten = findViewById(R.id.user_ten);
         user_email = findViewById(R.id.user_email);
         user_sdt = findViewById(R.id.user_sdt);
-        user_img = findViewById(R.id.user_img);
+        profile_image = findViewById(R.id.profile_image);
         mangloaisp = new ArrayList<>();
         mangSpmoi = new ArrayList<>();
         badge = findViewById(R.id.menu_sl_main);
@@ -277,13 +278,14 @@ public class MainActivity extends AppCompatActivity {
         user_ten.setText(Utils.user_current.getName());
         user_email.setText(Utils.user_current.getEmail());
         user_sdt.setText(Utils.user_current.getSdt());
-        //if(Utils.user_current.getHinhanh().contains(" ")){
-        //    Glide.with(getApplicationContext()).load(Utils.user_current.getHinhanh()).into(user_img);
-        //}
-       // else {
-        //    String hinh = Utils.BASE_URL+"images/"+Utils.user_current.getHinhanh();
-        //    Glide.with(getApplicationContext()).load(hinh).into(user_img);
-        //}
+
+        if(Utils.user_current.getAvatar().contains("https")){
+            Glide.with(getApplicationContext()).load(Utils.user_current.getAvatar()).into(profile_image);
+        }
+        else {
+            String hinh = Utils.BASE_URL+"imagesavt/"+Utils.user_current.getAvatar();
+            Glide.with(getApplicationContext()).load(hinh).into(profile_image);
+        }
     }
 
     @Override

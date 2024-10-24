@@ -144,7 +144,28 @@ public interface ApiBanHang {
             @Query("chucvu") String chucvu
     );
 
+    @GET("suauser-user.php")
+    Observable<MessageModel> suauseruser(
+            @Query("id") int id,
+            @Query("email") String email,
+            @Query("name") String name,
+            @Query("sdt") String sdt,
+            @Query("avatar") String avatar
+    );
+
+    @GET("updatepass.php")
+    Observable<MessageModel> updatepass(
+            @Query("id") int id,
+            @Query("old_pass") String old_pass,
+            @Query("new_pass") String new_pass
+    );
+
     @Multipart
     @POST("upload.php")
     Call<ThemSPModel> uploadFile(@Part MultipartBody.Part file);
+
+    @Multipart
+    @POST("uploadavt.php")
+    Call<ThemSPModel> uploadFileAvt(@Part MultipartBody.Part file, @Part("user_id") String userId);
+
 }
