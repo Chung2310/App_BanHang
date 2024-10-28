@@ -105,8 +105,8 @@ public interface ApiBanHang {
             @Query("id") int id
     );
 
-    @GET("getuserbyid.php")
-    Observable<UserModel> getUser(
+    @GET("getuser.php")
+    Observable<UsersModel> getUser(
             @Query("id") int id
     );
 
@@ -147,10 +147,14 @@ public interface ApiBanHang {
     @GET("suauser-user.php")
     Observable<MessageModel> suauseruser(
             @Query("id") int id,
-            @Query("email") String email,
             @Query("name") String name,
-            @Query("sdt") String sdt,
-            @Query("avatar") String avatar
+            @Query("sdt") String sdt
+    );
+
+    @GET("suaemail.php")
+    Observable<MessageModel> suaemail(
+            @Query("id") int id,
+            @Query("email") String email
     );
 
     @GET("updatepass.php")
@@ -166,6 +170,6 @@ public interface ApiBanHang {
 
     @Multipart
     @POST("uploadavt.php")
-    Call<ThemSPModel> uploadFileAvt(@Part MultipartBody.Part file, @Part("user_id") String userId);
+    Call<ThemSPModel> uploadFileAvt(@Part MultipartBody.Part file, @Query("id") String id);
 
 }

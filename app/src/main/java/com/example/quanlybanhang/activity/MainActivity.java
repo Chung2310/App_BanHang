@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
     NotificationBadge badge;
     FrameLayout frameLayout;
     ImageView imgSearch;
-    TextView user_ten,user_email,user_sdt;
+    TextView user_ten;
     CircleImageView profile_image;
 
     @Override
@@ -81,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
             Utils.user_current = user;
         }
         anhXa();
+        showInfo();
         ActionBar();
 
         if(isConnected(this)){
@@ -241,8 +242,6 @@ public class MainActivity extends AppCompatActivity {
         listViewMHC = findViewById(R.id.listviewMHC);
         drawerLayout = findViewById(R.id.drawerlayout);
         user_ten = findViewById(R.id.user_ten);
-        user_email = findViewById(R.id.user_email);
-        user_sdt = findViewById(R.id.user_sdt);
         profile_image = findViewById(R.id.profile_image);
         mangloaisp = new ArrayList<>();
         mangSpmoi = new ArrayList<>();
@@ -271,15 +270,15 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        showInfo();
+
     }
 
     private void showInfo(){
         user_ten.setText(Utils.user_current.getName());
-        user_email.setText(Utils.user_current.getEmail());
-        user_sdt.setText(Utils.user_current.getSdt());
+        if(Utils.user_current.getAvatar().equals("")){
 
-        if(Utils.user_current.getAvatar().contains("https")){
+        }
+        else if(Utils.user_current.getAvatar().contains("https")){
             Glide.with(getApplicationContext()).load(Utils.user_current.getAvatar()).into(profile_image);
         }
         else {

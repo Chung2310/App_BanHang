@@ -9,15 +9,15 @@
         android:id="@+id/item_image"
         android:src="@drawable/image_24"
         android:layout_gravity="center"
-        android:layout_width="40dp"
-        android:layout_height="40dp"/>
+        android:layout_width="20dp"
+        android:layout_height="20dp"/>
     <TextView
-        android:textColor="@android:color/holo_red_light"
         android:id="@+id/item_text"
         android:layout_gravity="center"
+        android:gravity="center"
         android:textSize="15sp"
         android:text="Điện Thoại"
         android:layout_marginLeft="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_width="match_parent"
+        android:layout_height="35dp" />
 </LinearLayout>

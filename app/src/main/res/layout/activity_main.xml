@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#E3DADA"
     tools:context=".activity.MainActivity">
 
     <androidx.drawerlayout.widget.DrawerLayout
@@ -96,6 +97,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <LinearLayout
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="10dp"
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
@@ -110,6 +113,8 @@
                             app:civ_border_color="#FF000000"/>
                     </LinearLayout>
                     <LinearLayout
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginBottom="10dp"
                         android:orientation="vertical"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
@@ -119,21 +124,9 @@
                             android:textSize="20dp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
-                        <TextView
-                            android:id="@+id/user_email"
-                            android:textSize="15dp"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:id="@+id/user_sdt"
-                            android:textSize="15dp"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-
                     </LinearLayout>
                 </LinearLayout>
                 <ListView
-
                     android:layout_marginTop="10dp"
                     android:id="@+id/listviewMHC"
                     android:layout_width="wrap_content"

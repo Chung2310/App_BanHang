@@ -44,7 +44,7 @@ public class BaoMatActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(pass_cu.getText() != null && pass_moi.getText() != null && pass_moi_moi.getText() != null){
-                    if(pass_moi.getText().equals(pass_moi_moi.getText())){
+                    if(pass_moi.getText().toString().equals(pass_moi_moi.getText().toString())){
                         compositeDisposable.add(apiBanHang.updatepass(Utils.user_current.getId(),pass_cu.getText().toString().trim(),pass_moi.getText().toString().trim())
                                 .subscribeOn(Schedulers.io())
                                 .observeOn(AndroidSchedulers.mainThread())

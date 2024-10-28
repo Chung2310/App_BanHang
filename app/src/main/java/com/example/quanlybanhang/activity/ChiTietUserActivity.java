@@ -32,6 +32,7 @@ import com.github.dhaval2404.imagepicker.ImagePicker;
 import java.io.File;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import io.paperdb.Paper;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
@@ -75,8 +76,6 @@ public class ChiTietUserActivity extends AppCompatActivity {
     }
 
     private void actionButton() {
-
-
         CTuser_name_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -86,7 +85,7 @@ public class ChiTietUserActivity extends AppCompatActivity {
         CTuser_email_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                suaTT();
+                suaEmail();
             }
         });
         CTuser_sdt_btn.setOnClickListener(new View.OnClickListener() {
@@ -110,6 +109,33 @@ public class ChiTietUserActivity extends AppCompatActivity {
                         .compress(1024)
                         .maxResultSize(1080,1080)
                         .start();
+            }
+        });
+    }
+
+    private void suaEmail() {
+        String str_email = CTuser_email.getText().toString();
+        xacThucTT(str_email, isValid -> {
+            if (isValid) {
+                // Tiến hành đăng ký
+                compositeDisposable.add(apiBanHang.suaemail(Utils.user_current.getId(), str_email)
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(
+                                MessageModel -> {
+                                    if (MessageModel.isSuccess()) {
+                                        Utils.user_current.setEmail(str_email);
+                                        Paper.book().write("user", Utils.user_current);
+                                    } else {
+                                        Toast.makeText(getApplicationContext(), MessageModel.getMessage(), Toast.LENGTH_LONG).show();
+                                    }
+                                },
+                                throwable -> {
+                                    Toast.makeText(getApplicationContext(), throwable.getMessage(), Toast.LENGTH_LONG).show();
+                                }
+                        ));
+            } else {
+                Toast.makeText(getApplicationContext(), "Email không tồn tại", Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -195,29 +221,24 @@ public class ChiTietUserActivity extends AppCompatActivity {
 
     private void suaTT() {
         String str_name = CTuser_name.getText().toString();
-        String str_email = CTuser_email.getText().toString();
         String str_sdt = CTuser_sdt.getText().toString();
-        xacThucTT(str_email, isValid -> {
-            if (isValid) {
-                compositeDisposable.add(apiBanHang.suauseruser(Utils.user_current.getId(), str_email,str_name , str_sdt, "")
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(
-                                MessageModel -> {
-                                    if (MessageModel.isSuccess()) {
-                                        Toast.makeText(getApplicationContext(),MessageModel.getMessage(),Toast.LENGTH_LONG).show();
-                                    } else {
-                                        Toast.makeText(getApplicationContext(),MessageModel.getMessage(),Toast.LENGTH_LONG).show();
-                                    }
-                                },
-                                throwable -> {
-                                    Toast.makeText(getApplicationContext(), throwable.getMessage(), Toast.LENGTH_LONG).show();
-                                }
-                        ));
-            } else {
-                Toast.makeText(getApplicationContext(), "Email không tồn tại", Toast.LENGTH_LONG).show();
-            }
-        });
+        compositeDisposable.add(apiBanHang.suauseruser(Utils.user_current.getId(), str_name , str_sdt)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        MessageModel -> {
+                            if (MessageModel.isSuccess()) {
+                                Utils.user_current.setName(str_name);
+                                Utils.user_current.setSdt(str_sdt);
+                                Paper.book().write("user", Utils.user_current);
+                                Toast.makeText(getApplicationContext(),MessageModel.getMessage(),Toast.LENGTH_LONG).show();
+                            } else {
+                                Toast.makeText(getApplicationContext(),MessageModel.getMessage(),Toast.LENGTH_LONG).show();
+                            }
+                        }, throwable -> {
+                            Toast.makeText(getApplicationContext(), throwable.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                ));
     }
 
     interface EmailValidationCallback {
