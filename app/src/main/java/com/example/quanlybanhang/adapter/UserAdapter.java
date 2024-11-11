@@ -45,6 +45,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> 
         holder.itemuser_sdt.setText(user.getSdt());
         holder.itemuser_chucvu.setText(user.getChucvu());
 
+
         holder.setItemClickListener((view, position1, isLongClick) -> {
             if (!isLongClick) {
 
@@ -87,8 +88,12 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> 
 
         @Override
         public void onCreateContextMenu(ContextMenu contextMenu, View view, ContextMenu.ContextMenuInfo contextMenuInfo) {
+            //contextMenu.add(0, 0, getAdapterPosition(), "Sửa");
+            //contextMenu.add(0, 1, getAdapterPosition(), "Xóa");
             contextMenu.add(0, 0, getAdapterPosition(), "Sửa");
-            contextMenu.add(0, 1, getAdapterPosition(), "Xóa");
+            if (!"admin".equalsIgnoreCase(listUser.get(getAdapterPosition()).getChucvu())) {
+                contextMenu.add(0, 1, getAdapterPosition(), "Xóa");
+            }
         }
 
         @Override

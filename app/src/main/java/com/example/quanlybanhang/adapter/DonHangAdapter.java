@@ -2,6 +2,7 @@ package com.example.quanlybanhang.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
@@ -82,6 +83,47 @@ public class DonHangAdapter extends RecyclerView.Adapter<DonHangAdapter.MyViewHo
         }else {
             holder.btn_delete.setVisibility(View.INVISIBLE);
         }
+        if(Utils.chucnang.equals("QuanLyOrder")){
+            if(donHang.getIdtrangthai() == 1){
+                holder.btn_xacthuc_order.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        compositeDisposable.add(apiBanHang.xacthucorder(donHang.getId())
+                                .subscribeOn(Schedulers.io())
+                                .observeOn(AndroidSchedulers.mainThread())
+                                .subscribe(
+                                        MessageModel -> {
+                                            holder.btn_xacthuc_order.setBackgroundColor(Color.GRAY);
+                                            holder.btn_xacthuc_order.setTextColor(Color.WHITE);
+                                            holder.btn_xacthuc_order.setText("Đã xác thực");
+                                            holder.btn_xacthuc_order.setEnabled(false);
+                                            Toast.makeText(context,"Xác nhận đơn hàng thành công",Toast.LENGTH_LONG).show();
+                                        },throwable -> {
+
+                                        }
+                                ));
+                    }
+                });
+            } else if(donHang.getIdtrangthai() == 2) {
+                holder.btn_xacthuc_order.setBackgroundColor(Color.GRAY);
+                holder.btn_xacthuc_order.setTextColor(Color.WHITE);
+                holder.btn_xacthuc_order.setText("Đã xác thực");
+                holder.btn_xacthuc_order.setEnabled(false);
+            }
+        }
+        else {
+            if(donHang.getIdtrangthai() == 1){
+                holder.btn_xacthuc_order.setBackgroundColor(Color.GRAY);
+                holder.btn_xacthuc_order.setTextColor(Color.WHITE);
+                holder.btn_xacthuc_order.setText("Chờ xác thực");
+                holder.btn_xacthuc_order.setEnabled(false);
+            } else if(donHang.getIdtrangthai() == 2) {
+                holder.btn_xacthuc_order.setBackgroundColor(Color.GRAY);
+                holder.btn_xacthuc_order.setTextColor(Color.WHITE);
+                holder.btn_xacthuc_order.setText("Đã xác thực");
+                holder.btn_xacthuc_order.setEnabled(false);
+            }
+        }
     }
 
     @Override
@@ -93,12 +135,13 @@ public class DonHangAdapter extends RecyclerView.Adapter<DonHangAdapter.MyViewHo
 
         TextView txtdonhang;
         RecyclerView recyclerViewChitiet;
-        AppCompatButton btn_delete;
+        AppCompatButton btn_delete,btn_xacthuc_order;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             txtdonhang = itemView.findViewById(R.id.iddonhang);
             recyclerViewChitiet = itemView.findViewById(R.id.recycleView_chitietdonhang);
             btn_delete = itemView.findViewById(R.id.btn_delete);
+            btn_xacthuc_order = itemView.findViewById(R.id.btn_xacthuc_order);
         }
     }
 }

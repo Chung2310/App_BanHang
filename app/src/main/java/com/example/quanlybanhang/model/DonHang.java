@@ -5,9 +5,17 @@ import java.util.List;
 
 public class DonHang implements Serializable {
     int id;
-    int iduser;
+    int iduser,idtrangthai;
     String diachi,sodienthoai,tongtien;
     List<Item> item;
+
+    public int getIdtrangthai() {
+        return idtrangthai;
+    }
+
+    public void setIdtrangthai(int idtrangthai) {
+        this.idtrangthai = idtrangthai;
+    }
 
     public int getId() {
         return id;

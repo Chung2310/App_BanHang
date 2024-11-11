@@ -74,7 +74,7 @@ public class QuanLyUserActivity extends AppCompatActivity {
     }
 
     private void getUser() {
-        compositeDisposable.add(apiBanHang.getUser()
+        compositeDisposable.add(apiBanHang.getListUser()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(

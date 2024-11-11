@@ -24,8 +24,8 @@ public interface ApiBanHang {
     @GET("getspmoi.php")
     Observable<SanPhamMoiModel> getSpMoi();
 
-    @GET("getuser.php")
-    Observable<UsersModel> getUser();
+    @GET("getlistuser.php")
+    Observable<UsersModel> getListUser();
 
     @GET("getorder.php")
     Observable<DonHangModel> getOrder();
@@ -83,6 +83,11 @@ public interface ApiBanHang {
     @GET("xemhoadon.php")
     Observable<DonHangModel> xemHoaDon(
             @Query("iduser") int iduser
+    );
+
+    @GET("xacthucorder.php")
+    Observable<MessageModel> xacthucorder(
+            @Query("id") int id
     );
 
     @GET("timkiem.php")
